@@ -1,0 +1,31 @@
+<template format="4"
+		revision="1"
+		name="MVP Template Activity"
+		description="Creates a new MVP classes - Presenter, View and Contract between the two">
+
+	<category value="Other"/>
+
+	<parameter id="className"
+		name="Functionality Name"
+		type="string"
+		constraints="class|unique|nonempty"
+		default="MvpFunction"
+		help="The name of the functionality that requires MVP views"/>
+
+    <parameter
+            id="useDagger"
+            name="Use Dagger"
+            type="boolean"
+            default="false"
+            help="If true, the component and module are generated automatically."/>
+
+    <parameter
+            id="createBase"
+            name="Create Base Entity"
+            type="boolean"
+            default="false"
+            help="If true, the BaseActivity and BasePresenter are generated automatically."/>
+	<globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
