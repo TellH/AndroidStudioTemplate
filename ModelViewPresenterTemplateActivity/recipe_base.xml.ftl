@@ -7,4 +7,6 @@
                    to="${escapeXmlAttribute(srcOut)}/BasePresenter.java" />
 	<instantiate from="src/app_package/BaseActivity.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/BaseActivity.java" />
+	<instantiate from="src/app_package/UseCase.java.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/UseCase.java" />
 </recipe>

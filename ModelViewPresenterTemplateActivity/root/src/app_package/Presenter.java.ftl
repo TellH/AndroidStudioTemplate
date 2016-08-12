@@ -1,7 +1,9 @@
 package ${packageName};
 
 public class ${className}Presenter extends BasePresenter<${className}Contract.View> implements ${className}Contract.Presenter{
-	public ${className}Presenter(){
-		
-	}
+    private static final int ${className} = 0;
+
+    public ${className}Presenter(@Named("${className}") UseCase useCase${className}) {
+        registerUserCase(${className}, useCase${className});
+    }
 }

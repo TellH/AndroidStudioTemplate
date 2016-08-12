@@ -2,7 +2,7 @@ package ${packageName};
 
 import android.support.v7.app.AppCompatActivity;
 
-public class BaseActivity extends AppCompatActivity implements BaseView{
+public abstract class BaseActivity extends AppCompatActivity implements BaseView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

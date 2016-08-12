@@ -15,7 +15,9 @@
 
 	<instantiate from="src/app_package/Presenter.java.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${className}Presenter.java" />
-
+				   
+	<instantiate from="src/app_package/UseCaseImp.java.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${className}UseCase.java" />
 
 	<open file="${srcOut}/${className}Contract.java"/>
 </recipe>

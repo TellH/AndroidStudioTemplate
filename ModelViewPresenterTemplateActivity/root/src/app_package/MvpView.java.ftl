@@ -17,7 +17,7 @@ public class ${className}Activity extends BaseActivity implements ${className}Co
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.activity_${className};
     }
  
     @Override

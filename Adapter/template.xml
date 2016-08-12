@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="Adapter"
+    description="Creates Adapter">
+
+    <category value="Other" />
+
+    <parameter
+        id="adapterName"
+        name="Adapter Name"
+        type="string"
+        constraints="unique|nonempty"
+        default="Main"
+        help="The name should'n contain 'Adapter'" />
+
+    <parameter
+        id="layoutId"
+        name="Layout id"
+        type="string"
+        help="this id should'n contain 'R.layout'" />
+
+    <parameter
+        id="itemType"
+        name="Data type of item"
+        type="string"
+        constraints="unique|nonempty"
+        default="String"
+        help="The data type of each item in adapter." />
+    <parameter
+            id="forRecyclerView"
+            name="For RecyclerView"
+            type="boolean"
+            default="true"
+            help="If true, it will generate adapter for RecyclerView."/>
+    <parameter
+            id="rvNative"
+            name="generate Native Adapter"
+            type="boolean"
+            default="true"
+			visibility="forRecyclerView"
+            help="If true, the Native Adapter for RecyclerView are generated automatically."/>
+    <parameter
+            id="rvWrap"
+            name="generate wrapped Adapter"
+            type="boolean"
+            default="false"
+			visibility="forRecyclerView"
+            help="If true, the wrapped Adapter for RecyclerView are generated automatically."/>
+    <parameter
+            id="rvWithBase"
+            name="With BaseAdapter"
+            type="boolean"
+            default="false"
+			visibility="rvWrap"
+            help="If true, it will generate BaseAdapter for RecyclerView."/>
+			
+    <parameter
+            id="forListView"
+            name="For ListView"
+            type="boolean"
+            default="false"
+            help="If true, it will generate adapter for ListView."/>
+    <parameter
+            id="lvNative"
+            name="generate Native Adapter"
+            type="boolean"
+            default="true"
+			visibility="forListView"
+            help="If true, the Native Adapter for ListView are generated automatically."/>
+    <parameter
+            id="lvWrap"
+            name="generate wrapped Adapter"
+            type="boolean"
+            default="false"
+			visibility="forListView"
+            help="If true, the wrapped Adapter for ListView are generated automatically."/>
+    <parameter
+            id="lvWithBase"
+            name="With BaseAdapter"
+            type="boolean"
+            default="false"
+			visibility="lvWrap"
+            help="If true, it will generate BaseAdapter for ListView."/>
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_adapter.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>

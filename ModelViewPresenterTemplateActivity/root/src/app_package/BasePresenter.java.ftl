@@ -1,47 +1,56 @@
 package ${packageName};
 
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
+import android.util.SparseArray;
 
 public class BasePresenter<T extends BaseView> implements MvpPresenter<T> {
 
-      private T view;
+    private T view;
 
-      private CompositeSubscription compositeSubscription = new CompositeSubscription();//RxJava
+    protected SparseArray<UseCase> useCases = new SparseArray<>();
 
-      @Override
-      public void attachView(T mvpView) {
-          view = mvpView;
-      }
+    @Override
+    public void attachView(T mvpView) {
+        view = mvpView;
+    }
 
-      @Override
-      public void detachView() {
-          view = null;
-          compositeSubscription.unsubscribe();
-          compositeSubscription.clear();
-      }
+    @Override
+    public void detachView() {
+        view = null;
+        unsubscribeAll();
+        useCases.clear();
+    }
 
-      public T getView() {
-          return view;
-      }
+    protected void unsubscribe(int key) {
+        useCases.get(key).unsubscribe();
+    }
 
-      public void checkViewAttached() {
-          if (!isViewAttached()) {
-              throw new MvpViewNotAttachedException();
-          }
-      }
+    protected void unsubscribeAll() {
+        for (int i = 0; i < useCases.size(); i++) {
+            useCases.valueAt(i).unsubscribe();
+        }
+    }
 
-      public boolean isViewAttached() {
-          return view != null;
-      }
+    public T getView() {
+        return view;
+    }
 
-      public void addSubscription(Subscription subscription) {
-          this.compositeSubscription.add(subscription);
-      }
+    public void checkViewAttached() {
+        if (!isViewAttached()) {
+            throw new MvpViewNotAttachedException();
+        }
+    }
 
-      public static class MvpViewNotAttachedException extends RuntimeException {
-          public MvpViewNotAttachedException() {
-              super("Please call Presenter.attachView(BaseView) before" + " requesting data to the Presenter");
-          }
-      }
-  }
+    public boolean isViewAttached() {
+        return view != null;
+    }
+
+    public void registerUserCase(int key, UseCase useCase) {
+        this.useCases.put(key, useCase);
+    }
+
+    public static class MvpViewNotAttachedException extends RuntimeException {
+        public MvpViewNotAttachedException() {
+            super("Please call Presenter.attachView(BaseView) before" + " requesting data to the Presenter");
+        }
+    }
+}
